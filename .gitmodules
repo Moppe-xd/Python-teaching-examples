@@ -1,3 +1,6 @@
 [submodule "coockie-clicker"]
 	path = Cookie-clicker
 	url = https://github.com/Moppe-xd/Cookie-clicker.git
+[submodule "Cookie-clicker"]
+	path = Cookie-clicker
+	url = https://github.com/Moppe-xd/Cookie-clicker.git
