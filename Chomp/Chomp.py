@@ -35,7 +35,8 @@ def createBord():
         spelplan[i] = rad
     return spelplan
 
+
+
 def main():
     spelplan = createBord()
-
 main()
