@@ -35,8 +35,50 @@ def createBord():
         spelplan[i] = rad
     return spelplan
 
+def printBord(spelplan):
+    """
+    Funktion för att skriva ut och den givna spelplanen
+    """
+    for rad in spelplan:
+        raden = ""
+        for element in rad:
+            if (element == "P"):
+                raden += element + "  "
+            else:
+                raden += element + " "
+        print(raden)
+
+
+def chomp(spelplan):
+    """
+    Funktion för att ta input och uppdatera chockladen
+    """
+    korrektKoordinater = False
+    while (not korrektKoordinater):
+        koordinater = input("Vilken Chockladruta vill du ta?")
+        rad = int(koordinater[0])
+        kolumn = int(koordinater[1])
+        if(len(spelplan) >= rad and len(spelplan[rad]) >= kolumn):
+            korrektKoordinater = True
+        else:
+            print("Nu skrev du fel. Försök igen!")
+
 
 
 def main():
+    """
+    Huvudfunktionen av programmet. Det är denna funktion som kör spelet
+    """
+    gameOver = False
+    player1Tur = True
     spelplan = createBord()
+    printBord(spelplan)
+    while(not gameOver): #Går lika bra att skrivas som 'while(gameOver == False):'
+        if (player1Tur):
+            print("Spelare 1:s tur")
+            player1Tur = False
+        else:
+            print("Spelare 2:s tur")
+            player1Tur = True
+        chomp(spelplan)
 main()
