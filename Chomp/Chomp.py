@@ -54,17 +54,18 @@ def chomp(spelplan):
     Funktion för att ta input och uppdatera chockladen
     """
     korrektKoordinater = False
+    #Kontrolera att det man skriver in är en korrekt chockladbit
     while (not korrektKoordinater):
         koordinater = input("Vilken Chockladruta vill du ta?")
         rad = int(koordinater[0])
         kolumn = int(koordinater[1])
-        if(len(spelplan) >= rad and len(spelplan[rad]) >= kolumn):
+        if(1 <= rad <= len(spelplan) and 1 <= kolumn <= len(spelplan[rad - 1])):
             korrektKoordinater = True
         else:
             print("Nu skrev du fel. Försök igen!")
-    for i in range(rad,len(spelplan)):
-        for j in range(kolumn, len(spelplan[i])):
-            spelplan[i-1][j-1] = " "
+    #Uppdaterar chockladen utifrån vilken bit man valde
+    for i in range(rad - 1, len(spelplan)):
+        spelplan[i] = spelplan[i][:kolumn - 1]
     return spelplan
 
 
@@ -77,12 +78,20 @@ def main():
     player1Tur = True
     spelplan = createBord()
     while(not gameOver): #Går lika bra att skrivas som 'while(gameOver == False):'
-        printBord(spelplan)
-        if (player1Tur):
+        printBord(spelplan) 
+        if (player1Tur): #Går lika bra att skriva 'if(player1Tur == True)'
             print("Spelare 1:s tur")
             player1Tur = False
         else:
             print("Spelare 2:s tur")
             player1Tur = True
         chomp(spelplan)
+        
+        #Kontrollera om spelet är över genom att kolla på storkleken av chockladen
+        if len(spelplan[0]) == 1 and len(spelplan[1]) == 0:
+            if(not player1Tur):
+                print("\nSpelare 1 vann\n")
+            else:
+                print("\nSpelare 2 vann\n")
+            break
 main()
