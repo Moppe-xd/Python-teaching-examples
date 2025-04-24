@@ -62,6 +62,10 @@ def chomp(spelplan):
             korrektKoordinater = True
         else:
             print("Nu skrev du fel. Försök igen!")
+    for i in range(rad,len(spelplan)):
+        for j in range(kolumn, len(spelplan[i])):
+            spelplan[i-1][j-1] = " "
+    return spelplan
 
 
 
@@ -72,8 +76,8 @@ def main():
     gameOver = False
     player1Tur = True
     spelplan = createBord()
-    printBord(spelplan)
     while(not gameOver): #Går lika bra att skrivas som 'while(gameOver == False):'
+        printBord(spelplan)
         if (player1Tur):
             print("Spelare 1:s tur")
             player1Tur = False
